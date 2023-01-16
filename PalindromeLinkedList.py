@@ -23,12 +23,12 @@ The number of nodes in the list is in the range [1, 105].
 '''
 
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 class Solution:
-    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+    def isPalindrome(self, head:ListNode) -> bool:
         headlist = []        
         current = head
         while current: #ja que ListNode,next por default é None, e None é falsy para o py:
