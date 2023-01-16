@@ -34,7 +34,7 @@ class Solution:
         for letra in ransomNote:
             if letra not in check.keys():
                 return False
-            check[letra] = check.get(letra,0) -1 
+            check[letra] = check.get(letra) -1 
             if check[letra] < 0:
                 return False   
         return True
