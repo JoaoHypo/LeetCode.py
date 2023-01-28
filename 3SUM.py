@@ -49,13 +49,13 @@ else:
         del templist[0]
         contador += 1
         for index2,num2 in enumerate(templist):
-            combination = tuple(sorted(index + index2+contador))
+            combination = tuple(sorted([index] + [index2+contador]))
             if combination not in dictpairs.keys():
-                dictpairs[combination] = sorted([num,num2])
+                dictpairs[combination] = [num,num2]
     for index,num in enumerate(nums):
         for key,lista in dictpairs.items():
-            if str(index) not in key:
-                dicttriples["".join(sorted(str(index)+str(key)))] = sorted(lista+[num])
+            if index not in key:
+                dicttriples[tuple(sorted(list(key)+[index]))] = sorted(lista+[num])
     for lista in dicttriples.values():
         if sum(lista) == 0:
             if lista not in result:
