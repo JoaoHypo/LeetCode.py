@@ -33,7 +33,7 @@ Constraints:
 3 <= nums.length <= 3000
 -105 <= nums[i] <= 105
 '''
-
+       # 0  1  2  3  4  5  6  7  8  9 10 11 12  13 14
 nums = [-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6]
     
 if len(nums) == 3:
@@ -49,7 +49,7 @@ else:
         del templist[0]
         contador += 1
         for index2,num2 in enumerate(templist):
-            combination = "".join(sorted(str(index) + str(index2+contador)))
+            combination = tuple(sorted(index + index2+contador))
             if combination not in dictpairs.keys():
                 dictpairs[combination] = sorted([num,num2])
     for index,num in enumerate(nums):
