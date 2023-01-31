@@ -34,37 +34,55 @@ Constraints:
 -105 <= nums[i] <= 105
 '''
 
-#Todo = debug this 
-class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
-        if len(nums) <3:
-            return []
+#In this code, was the first time i had contact with pointers in python, since 
+# it's not a native function of the language, we need to create a pointer alternative
+# that in the end works as the same.
 
-        nums.sort()
-        result = []
+def threeSum(self, nums: list[int]) -> list[list[int]]:
+    # If the length of the input array is less than 3, return an empty list
+    if len(nums) <3:
+        return []
 
-        for i in range(len(nums) - 2): #Skipping first and last number
-            if i > 0 and nums[i] == nums[i-1]:
-                continue
-            
-            left = i + 1
-            right = len(nums) - 1
+    # Sort the input array
+    nums.sort()
+    # Initialize an empty list to store the triplets
+    result = []
 
-            while left < right:
-                total = nums[left] + nums[right] + nums[i]
-                if total == 0:
-                    result.append([nums[i],nums[left],nums[right]])
+    # Iterate through the elements of the input array (skipping the first and the last element)
+    for i in range(len(nums) - 2):
+        # Skip the current iteration if the current element is the same as the previous one
+        if i > 0 and nums[i] == nums[i-1]:
+            continue
+        
+        # Set the "left" pointer to be the element next to the current one
+        left = i + 1
+        # Set the "right" pointer to be the last element of the input array
+        right = len(nums) - 1
+
+        # Move the two pointers towards each other until they meet
+        while left < right:
+            # Calculate the sum of the elements pointed by the three pointers
+            total = nums[left] + nums[right] + nums[i]
+            # If the sum of the elements is 0, add the three elements to the result list
+            if total == 0:
+                result.append([nums[i],nums[left],nums[right]])
+                # Move both the "left" and "right" pointers
+                left += 1
+                right -= 1
+                # Skip duplicates by checking if the elements pointed by the pointers are the same as the previous ones
+                # If the element pointed by the "left" pointer is the same as the previous one, move the "left" pointer
+                while nums[left] == nums[left -1] and left < right:
                     left += 1
-                    right -= 1
+                # If the element pointed by the "right" pointer is the same as the previous one, move the "right" pointer
+                while nums[right] == nums[right + 1] and left < right:
+                    right -= 1 
 
-                    while nums[left] == nums[left -1] and left < right:
-                        left += 1
-                    while nums[right] == nums[right + 1] and left < right:
-                        right -= 1 
+            # If the sum of the elements is less than 0, move the "left" pointer right
+            elif total < 0:
+                left += 1
+            # If the sum of the elements is greater than 0, move the "right" pointer left
+            else:
+                right -= 1
 
-                elif total < 0:
-                    left += 1
-                else:
-                    right -= 1
-
-        return result
+    # Return the "result" list containing all the triplets that sum to 0
+    return result
