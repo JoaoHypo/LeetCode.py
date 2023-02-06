@@ -29,6 +29,8 @@ Constraints:
 All elements in nums are distinct.
 
 '''
+
+#todo, debug and try aproches withot defaultdict
 from collections import defaultdict
 
 def tupleSameProduct(self, nums: list[int]) -> int:
