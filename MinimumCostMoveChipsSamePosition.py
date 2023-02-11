@@ -37,3 +37,13 @@ Constraints:
 1 <= position.length <= 100
 1 <= position[i] <= 10^9
 '''
+
+def minCostToMoveChips(self, position: list[int]) -> int:
+    even = 0
+    odd = 0
+    for i in position:
+        if i % 2 == 0:
+            even += 1
+        else: 
+            odd += 1
+    return min(even,odd)
